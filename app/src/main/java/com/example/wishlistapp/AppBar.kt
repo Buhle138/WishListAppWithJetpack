@@ -22,15 +22,20 @@ fun AppBarView(
 
     //puttin this IconButton in a variable so that we can be able  modify it when we are on a separate page
     val navigationIcon: @Composable () -> Unit? = {
-        IconButton(onClick = {
-            onBackNavClicked()
-        }) {
-            Icon(
-                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                tint = Color.White,
-                contentDescription = null,
-            )
+        if(!title.contains("WishList")){
+            IconButton(onClick = {
+                onBackNavClicked()
+            }) {
+                Icon(
+                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                    tint = Color.White,
+                    contentDescription = null,
+                )
+            }
+        }else{
+            null
         }
+
     }
     
     TopAppBar(
