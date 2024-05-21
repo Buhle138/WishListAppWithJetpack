@@ -61,7 +61,9 @@ dependencies {
     //noinspection GradleDependency
     implementation("androidx.room:room-ktx:${room}")
     kapt("androidx.room:room-compiler:${room}")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
 
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
     //noinspection GradleDependency
     implementation("androidx.navigation:navigation-compose:$nav_version")
     //noinspection GradleDependency
