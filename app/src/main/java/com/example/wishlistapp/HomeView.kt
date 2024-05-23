@@ -15,15 +15,20 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.wishlistapp.data.DummyWish
 import com.example.wishlistapp.data.Wish
 
 @Composable
-fun HomeView(){
+fun HomeView(
+    navController: NavController,
+    viewModel: WishViewModel
+){
 
 
     Scaffold(
@@ -31,18 +36,20 @@ fun HomeView(){
 
         })},
         floatingActionButton = {
-            FloatingActionButton(modifier = Modifier.padding(all = 20.dp),onClick = {  },
+            FloatingActionButton(modifier = Modifier.padding(all = 20.dp),onClick = { navController.navigate(Screen.AddScreen.route) },
                 contentColor = Color.White,
                 backgroundColor = Color.Black
                 ) {
 Icon(imageVector = Icons.Default.Add, contentDescription = null)
             }
         }
+
     ) {
+        val wishList = viewModel.getAllWishes.collectAsState(initial = listOf())
         LazyColumn(modifier = Modifier
             .fillMaxSize()
             .padding(it)){
-            items(DummyWish.wishList){  Wish ->  
+            items(wishList.value){  Wish ->
                 WishItem(wish = Wish) {
                     
                 }
